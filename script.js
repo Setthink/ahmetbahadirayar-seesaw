@@ -26,6 +26,7 @@ function updateSeesawTilt() {
     -30,
     Math.min(30, (rightTorque - leftTorque) / 10)
   );
+  seesaw.style.transform = `translate(-50%, -50%) rotate(${currentSeesawAngle}deg)`;
   saveStateToLocalStorage();
 }
 
