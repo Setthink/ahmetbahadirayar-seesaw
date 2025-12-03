@@ -7,7 +7,7 @@ let currentSeesawAngle =
 let leftTorque = parseFloat(localStorage.getItem('leftTorque')) || 0;
 let rightTorque = parseFloat(localStorage.getItem('rightTorque')) || 0;
 // Show the saved seesaw angle on load
-seesaw.style.transform = `translate(-50%, -50%) rotate(${currentSeesawAngle}deg)`;
+applySeesawTransform(currentSeesawAngle);
 
 
 function getClickPositionOnSeesaw(event) {
@@ -29,8 +29,12 @@ function updateSeesawTilt() {
     -30,
     Math.min(30, (rightTorque - leftTorque) / 10)
   );
-  seesaw.style.transform = `translate(-50%, -50%) rotate(${currentSeesawAngle}deg)`;
+  applySeesawTransform(currentSeesawAngle);
   saveStateToLocalStorage();
+}
+
+function applySeesawTransform(angle) {
+  seesaw.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
 }
 
 function saveStateToLocalStorage() {
