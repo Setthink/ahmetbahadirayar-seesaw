@@ -1,5 +1,41 @@
 :root {
   --plank-width: 400px;
   --plank-height: 20px;
-  --pivot-size: 50px;
+  --pivot-size: 40px;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#seesaw-container {
+  position: relative;
+  width: var(--plank-width);
+  height: 200px;
+}
+
+#seesaw {
+  width: var(--plank-width);
+  height: var(--plank-height);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background-color: #FF7F50;
+  transform-origin: center;
+}
+
+#pivot {
+  width: var(--pivot-size);
+  height: var(--pivot-size);
+  position: absolute;
+  top: calc(50% + var(--plank-height) / 2);
+  left: calc(50% - var(--pivot-size) / 2);
+  background-color: #000;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
