@@ -71,9 +71,13 @@ function renderWeights() {
   allWeights.forEach(obj => {
     const weightDiv = document.createElement('div');
     weightDiv.classList.add('weight');
-    weightDiv.style.left = `calc(50% + ${obj.offsetX}px - 20px)`;
+    const size = 20 + obj.weight * 4;
+    weightDiv.style.left = `calc(50% + ${obj.offsetX}px - ${size/2}px)`;
     weightDiv.style.backgroundColor = obj.color;
     weightDiv.title = `Weight: ${obj.weight}`;
+    weightDiv.style.width = `${size}px`;
+    weightDiv.style.height = `${size}px`;
+    weightDiv.style.top = `-${size}px`;
     const weightNumber = document.createElement('div');
     weightNumber.classList.add('weight-number');
     weightNumber.textContent = obj.weight;
