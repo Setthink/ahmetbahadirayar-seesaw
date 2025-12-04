@@ -1,5 +1,8 @@
 const seesaw = document.getElementById('seesaw');
 const resetBtn = document.getElementById('reset-btn');
+const leftWeightDisplay = document.getElementById('left-weight');
+const rightWeightDisplay = document.getElementById('right-weight');
+const angleInfoDisplay = document.getElementById('angle-info');
 
 let leftSide = JSON.parse(localStorage.getItem('leftSide')) || [];
 let rightSide = JSON.parse(localStorage.getItem('rightSide')) || [];
@@ -10,7 +13,7 @@ let rightTorque = parseFloat(localStorage.getItem('rightTorque')) || 0;
 // Show the saved seesaw angle on load
 applySeesawTransform(currentSeesawAngle);
 renderWeights();
-
+updateWeightDisplays();
 
 function getClickPositionOnSeesaw(event) {
   const rect = seesaw.getBoundingClientRect();
@@ -32,6 +35,7 @@ function updateSeesawTilt() {
     Math.min(30, (rightTorque - leftTorque) / 10)
   );
   applySeesawTransform(currentSeesawAngle);
+  angleInfoDisplay.textContent = `Angle: ${currentSeesawAngle.toFixed(2)}°`;
   saveStateToLocalStorage();
 }
 
@@ -63,16 +67,23 @@ function saveStateToLocalStorage() {
   localStorage.setItem('currentSeesawAngle', currentSeesawAngle);
 }
 
+function updateWeightDisplays() {
+  const leftTotal = leftSide.reduce((sum, obj) => sum + obj.weight, 0);
+  const rightTotal = rightSide.reduce((sum, obj) => sum + obj.weight, 0);
+  leftWeightDisplay.textContent = `Left Weight: ${leftTotal}`;
+  rightWeightDisplay.textContent = `Right Weight: ${rightTotal}`;
+}
+
 function renderWeights() {
-  document.querySelectorAll('.weight').forEach(w => w.remove());
+  document.querySelectorAll('.weight').forEach((w) => w.remove());
 
   const allWeights = [...leftSide, ...rightSide];
 
-  allWeights.forEach(obj => {
+  allWeights.forEach((obj) => {
     const weightDiv = document.createElement('div');
     weightDiv.classList.add('weight');
     const size = 20 + obj.weight * 4;
-    weightDiv.style.left = `calc(50% + ${obj.offsetX}px - ${size/2}px)`;
+    weightDiv.style.left = `calc(50% + ${obj.offsetX}px - ${size / 2}px)`;
     weightDiv.style.backgroundColor = obj.color;
     weightDiv.title = `Weight: ${obj.weight}`;
     weightDiv.style.width = `${size}px`;
@@ -100,6 +111,7 @@ seesaw.addEventListener('click', (event) => {
 
   updateSeesawTilt();
   renderWeights();
+  updateWeightDisplays();
   console.log('angle:', currentSeesawAngle);
 });
 
@@ -112,4 +124,5 @@ resetBtn.addEventListener('click', () => {
   localStorage.clear();
   applySeesawTransform(0);
   renderWeights();
+  updateWeightDisplays();
 });

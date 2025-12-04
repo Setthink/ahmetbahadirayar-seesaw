@@ -11,6 +11,28 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  gap: 20px;
+  font-family: 'CodeNewRoman Nerd Font Propo', monospace;
+}
+
+#info-panel {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#left-weight {
+  color: #dc2f02;
+}
+
+#right-weight {
+  color: #9d0208;
+}
+
+#angle-info {
+  color: #005f73;
 }
 
 #reset-btn {
@@ -43,7 +65,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  background-color: #FF7F50;
+  background-color: #ff7f50;
   transform-origin: center;
   transition: transform 0.5s ease;
 }
