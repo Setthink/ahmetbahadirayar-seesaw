@@ -1,7 +1,8 @@
 const seesaw = document.getElementById('seesaw');
+const resetBtn = document.getElementById('reset-btn');
 
-const leftSide = JSON.parse(localStorage.getItem('leftSide')) || [];
-const rightSide = JSON.parse(localStorage.getItem('rightSide')) || [];
+let leftSide = JSON.parse(localStorage.getItem('leftSide')) || [];
+let rightSide = JSON.parse(localStorage.getItem('rightSide')) || [];
 let currentSeesawAngle =
   parseFloat(localStorage.getItem('currentSeesawAngle')) || 0;
 let leftTorque = parseFloat(localStorage.getItem('leftTorque')) || 0;
@@ -96,4 +97,15 @@ seesaw.addEventListener('click', (event) => {
   updateSeesawTilt();
   renderWeights();
   console.log('angle:', currentSeesawAngle);
+});
+
+resetBtn.addEventListener('click', () => {
+  leftSide.length = 0;
+  rightSide.length = 0;
+  leftTorque = 0;
+  rightTorque = 0;
+  currentSeesawAngle = 0;
+  localStorage.clear();
+  applySeesawTransform(0);
+  renderWeights();
 });
