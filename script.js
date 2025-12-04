@@ -77,7 +77,7 @@ function renderWeights() {
     weightNumber.classList.add('weight-number');
     weightNumber.textContent = obj.weight;
     weightDiv.appendChild(weightNumber);
-    seesaw.parentElement.appendChild(weightDiv);
+    seesaw.appendChild(weightDiv);
   });
 }
 seesaw.addEventListener('click', (event) => {

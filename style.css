@@ -2,6 +2,7 @@
   --plank-width: 400px;
   --plank-height: 20px;
   --pivot-size: 40px;
+  --weight-size: 40px;
 }
 
 body {
@@ -43,10 +44,11 @@ body {
 
 .weight {
   position: absolute;
-  top: calc(50% - 20px);
-  width: 40px;
-  height: 40px;
+  top: calc(-1 * var(--weight-size));
+  width: var(--weight-size);
+  height: var(--weight-size);
   border-radius: 50%;
+  pointer-events: none;
 }
 
 .weight-number {
