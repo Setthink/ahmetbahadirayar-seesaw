@@ -14,6 +14,7 @@ let rightTorque = parseFloat(localStorage.getItem('rightTorque')) || 0;
 applySeesawTransform(currentSeesawAngle);
 renderWeights();
 updateWeightDisplays();
+updateAngleDisplay();
 
 function getClickPositionOnSeesaw(event) {
   const rect = seesaw.getBoundingClientRect();
@@ -35,8 +36,12 @@ function updateSeesawTilt() {
     Math.min(30, (rightTorque - leftTorque) / 10)
   );
   applySeesawTransform(currentSeesawAngle);
-  angleInfoDisplay.textContent = `Angle: ${currentSeesawAngle.toFixed(2)}°`;
+  updateAngleDisplay();
   saveStateToLocalStorage();
+}
+
+function updateAngleDisplay() {
+  angleInfoDisplay.textContent = `Angle: ${currentSeesawAngle.toFixed(2)}°`;
 }
 
 function getColorForWeight(weight) {
@@ -125,4 +130,5 @@ resetBtn.addEventListener('click', () => {
   applySeesawTransform(0);
   renderWeights();
   updateWeightDisplays();
+  updateAngleDisplay();
 });
