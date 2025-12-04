@@ -19,9 +19,9 @@ body {
 }
 
 #seesaw {
+  position: absolute;
   width: var(--plank-width);
   height: var(--plank-height);
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -32,11 +32,28 @@ body {
 }
 
 #pivot {
+  position: absolute;
   width: var(--pivot-size);
   height: var(--pivot-size);
-  position: absolute;
   top: calc(50% + var(--plank-height) / 2);
   left: calc(50% - var(--pivot-size) / 2);
   background-color: #000;
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.weight {
+  position: absolute;
+  top: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.weight-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
 }
