@@ -13,6 +13,68 @@ body {
   height: 100vh;
   gap: 20px;
   font-family: 'CodeNewRoman Nerd Font Propo', monospace;
+  background-color: #f0f0f0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 16px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  box-sizing: border-box;
+}
+
+.weight {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 2px solid #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weight-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+}
+.info-item {
+  background-color: #f5f5f5;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  min-width: 120px;
+}
+
+.info-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.info-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.viewport {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 100px;
 }
 
 #info-panel {
@@ -20,35 +82,24 @@ body {
   gap: 40px;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 50px;
-}
-
-#left-weight {
-  color: #dc2f02;
-}
-
-#right-weight {
-  color: #9d0208;
-}
-
-#angle-info {
-  color: #005f73;
+  padding: 20px;
 }
 
 #reset-btn {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #dc2f02;
-  color: white;
+  background-color: #333;
+  color: #fff;
   border: none;
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  margin-bottom: 8px;
 }
 
 #reset-btn:hover {
-  background-color: #9d0208;
+  background-color: #555;
 }
 
 #seesaw-container {
@@ -68,6 +119,7 @@ body {
   background-color: #ff7f50;
   transform-origin: center;
   transition: transform 0.5s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #pivot {
@@ -80,18 +132,22 @@ body {
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
-.weight {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  border: 2px solid #000;
+#weight-entry {
+  height: 200px;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  width: 570px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-.weight-number {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-weight: bold;
+#weight-entry div {
+  padding: 12px 15px;
+  border-radius: 7px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
 }

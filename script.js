@@ -42,7 +42,7 @@ function updateSeesawTilt() {
 }
 
 function updateAngleDisplay() {
-  angleInfoDisplay.textContent = `Angle: ${currentSeesawAngle.toFixed(2)}°`;
+  angleInfoDisplay.textContent = `${currentSeesawAngle.toFixed(2)}°`;
 }
 
 function getColorForWeight(weight) {
@@ -63,9 +63,10 @@ function getColorForWeight(weight) {
 
 function updateWeightEntryDisplay(offsetX, weight) {
   const weightEntryDiv = document.createElement('div');
-  weightEntryDiv.textContent = `Added weight ${weight} at ${offsetX < 0 ? 'left' : 'right'} side with offset ${Math.abs(
+  const side = offsetX < 0 ? 'Left' : 'Right';
+  weightEntryDiv.textContent = `- ${weight}kg added to ${side} side at ${Math.abs(
     offsetX
-  ).toFixed(2)}px`;
+  ).toFixed(0)}px from center`;
   document.getElementById('weight-entry').prepend(weightEntryDiv);
 }
 
@@ -93,8 +94,8 @@ function saveStateToLocalStorage() {
 function updateWeightDisplays() {
   const leftTotal = leftSide.reduce((sum, obj) => sum + obj.weight, 0);
   const rightTotal = rightSide.reduce((sum, obj) => sum + obj.weight, 0);
-  leftWeightDisplay.textContent = `Left Weight: ${leftTotal}`;
-  rightWeightDisplay.textContent = `Right Weight: ${rightTotal}`;
+  leftWeightDisplay.textContent = `${leftTotal} kg`;
+  rightWeightDisplay.textContent = `${rightTotal} kg`;
 }
 
 function renderWeights() {
@@ -136,7 +137,6 @@ seesaw.addEventListener('click', (event) => {
   renderWeights();
   updateWeightDisplays();
   updateWeightEntryDisplay(offsetX, weight);
-  console.log('angle:', currentSeesawAngle);
 });
 
 resetBtn.addEventListener('click', () => {

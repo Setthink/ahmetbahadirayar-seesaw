@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="info-panel">
-      <div id="left-weight">Left Weight: 0</div>
-      <div id="right-weight">Right Weight: 0</div>
-      <div id="angle-info">Angle: 0°</div>
+    <div class="main-container">
+      <div id="info-panel">
+        <div class="info-item">
+          <div class="info-label">LEFT WEIGHT</div>
+          <div class="info-value" id="left-weight">0 kg</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">RIGHT WEIGHT</div>
+          <div class="info-value" id="right-weight">0 kg</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">TILT ANGLE</div>
+          <div class="info-value" id="angle-info">0°</div>
+        </div>
+      </div>
+      <div class="viewport" id="seesaw-container">
+        <div id="seesaw"></div>
+        <div id="pivot"></div>
+      </div>
+      <div id="weight-entry"></div>
+      <button id="reset-btn">Reset</button>
     </div>
-    <div id="seesaw-container">
-      <div id="seesaw"></div>
-      <div id="pivot"></div>
-    </div>
-    <div id="weight-entry">
-    </div>
-    <button id="reset-btn">Reset</button>
     <script src="script.js"></script>
   </body>
 </html>
