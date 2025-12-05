@@ -15,6 +15,7 @@ applySeesawTransform(currentSeesawAngle);
 renderWeights();
 updateWeightDisplays();
 updateAngleDisplay();
+rebuildWeightEntryDisplay();
 
 function getClickPositionOnSeesaw(event) {
   const rect = seesaw.getBoundingClientRect();
@@ -58,6 +59,23 @@ function getColorForWeight(weight) {
     '#03071e',
   ];
   return colors[weight - 1] || '#999999';
+}
+
+function updateWeightEntryDisplay(offsetX, weight) {
+  const weightEntryDiv = document.createElement('div');
+  weightEntryDiv.textContent = `Added weight ${weight} at ${offsetX < 0 ? 'left' : 'right'} side with offset ${Math.abs(
+    offsetX
+  ).toFixed(2)}px`;
+  document.getElementById('weight-entry').prepend(weightEntryDiv);
+}
+
+function rebuildWeightEntryDisplay() {
+  const weightEntryContainer = document.getElementById('weight-entry');
+  weightEntryContainer.innerHTML = '';
+  const allWeights = [...leftSide, ...rightSide];
+  allWeights.forEach((obj) => {
+    updateWeightEntryDisplay(obj.offsetX, obj.weight);
+  });
 }
 
 function applySeesawTransform(angle) {
@@ -117,6 +135,7 @@ seesaw.addEventListener('click', (event) => {
   updateSeesawTilt();
   renderWeights();
   updateWeightDisplays();
+  updateWeightEntryDisplay(offsetX, weight);
   console.log('angle:', currentSeesawAngle);
 });
 
@@ -131,4 +150,5 @@ resetBtn.addEventListener('click', () => {
   renderWeights();
   updateWeightDisplays();
   updateAngleDisplay();
+  document.getElementById('weight-entry').innerHTML = '';
 });
