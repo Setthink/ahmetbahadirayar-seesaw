@@ -150,6 +150,16 @@ body {
   background-color: var(--bg-main);
 }
 
+.weight-drop {
+  animation: dropWeight 0.6s ease;
+}
+
+@keyframes dropWeight {
+  0% {
+    top: -250px;
+  }
+}
+
 #reset-btn {
   padding: 10px 20px;
   font-size: 16px;
@@ -166,14 +176,3 @@ body {
 #reset-btn:hover {
   background-color: #555;
 }
-
-.weight-drop {
-  animation: dropWeight 0.6s ease;
-}
-
-@keyframes dropWeight {
-  0% {
-    top: -250px;
-  }
-}
-
