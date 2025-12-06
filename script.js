@@ -1,3 +1,6 @@
+// Author: Ahmet Bahadır Ayar
+// Project: Seesaw Simulation
+
 const seesaw = document.getElementById('seesaw');
 const resetBtn = document.getElementById('reset-btn');
 const leftWeightDisplay = document.getElementById('left-weight');
