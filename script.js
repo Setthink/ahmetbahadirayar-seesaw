@@ -98,27 +98,34 @@ function updateWeightDisplays() {
   rightWeightDisplay.textContent = `${rightTotal} kg`;
 }
 
-function renderWeights() {
+function renderWeights(animateSide = null) {
   document.querySelectorAll('.weight').forEach((w) => w.remove());
 
-  const allWeights = [...leftSide, ...rightSide];
+  const renderSide = (weights, side) => {
+    const lastIndex = weights.length - 1;
+    weights.forEach((obj, index) => {
+      const weightDiv = document.createElement('div');
+      weightDiv.classList.add('weight');
+      if (animateSide === side && index === lastIndex) {
+        weightDiv.classList.add('weight-drop');
+      }
+      const size = 20 + obj.weight * 4;
+      weightDiv.style.left = `calc(50% + ${obj.offsetX}px - ${size / 2}px)`;
+      weightDiv.style.backgroundColor = obj.color;
+      weightDiv.title = `Weight: ${obj.weight}`;
+      weightDiv.style.width = `${size}px`;
+      weightDiv.style.height = `${size}px`;
+      weightDiv.style.top = `-${size}px`;
+      const weightNumber = document.createElement('div');
+      weightNumber.classList.add('weight-number');
+      weightNumber.textContent = obj.weight;
+      weightDiv.appendChild(weightNumber);
+      seesaw.appendChild(weightDiv);
+    });
+  };
 
-  allWeights.forEach((obj) => {
-    const weightDiv = document.createElement('div');
-    weightDiv.classList.add('weight');
-    const size = 20 + obj.weight * 4;
-    weightDiv.style.left = `calc(50% + ${obj.offsetX}px - ${size / 2}px)`;
-    weightDiv.style.backgroundColor = obj.color;
-    weightDiv.title = `Weight: ${obj.weight}`;
-    weightDiv.style.width = `${size}px`;
-    weightDiv.style.height = `${size}px`;
-    weightDiv.style.top = `-${size}px`;
-    const weightNumber = document.createElement('div');
-    weightNumber.classList.add('weight-number');
-    weightNumber.textContent = obj.weight;
-    weightDiv.appendChild(weightNumber);
-    seesaw.appendChild(weightDiv);
-  });
+  renderSide(leftSide, true);
+  renderSide(rightSide, false);
 }
 seesaw.addEventListener('click', (event) => {
   const offsetX = getClickPositionOnSeesaw(event);
@@ -134,7 +141,7 @@ seesaw.addEventListener('click', (event) => {
   }
 
   updateSeesawTilt();
-  renderWeights();
+  renderWeights(offsetX < 0 ? true : false);
   updateWeightDisplays();
   updateWeightEntryDisplay(offsetX, weight);
 });
